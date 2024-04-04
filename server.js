@@ -7,8 +7,6 @@ const mongoose = require("mongoose");
 
 const authRouter = require("./routes/authRouter");
 
-app.use("/api/user", authRouter);
-
 const port = process.env.PORT || 3000;
 
 const app = express();
@@ -29,6 +27,8 @@ app.use((req, res, next) => {
 });
 
 app.get("/", (req, res) => res.send("Hello world")); //sample API
+
+app.use("/api/user", authRouter);
 
 mongoose
   .connect(process.env.MONGO_URI)
