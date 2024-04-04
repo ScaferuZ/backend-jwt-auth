@@ -22,7 +22,7 @@ userSchema.statics.signup = async function (email, password) {
   if (!email || !password) {
     throw Error("One or more fields are empty");
   }
-  if (validator.isEmail(email)) {
+  if (!validator.isEmail(email)) {
     throw Error("Email is not valid");
   }
   if (!validator.isStrongPassword(password)) {
@@ -70,4 +70,4 @@ userSchema.statics.login = async function (email, password) {
   return user;
 };
 
-module.exports = mongoose.modal("user", userSchema);
+module.exports = mongoose.model("user", userSchema);
